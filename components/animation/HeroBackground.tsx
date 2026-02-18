@@ -61,8 +61,8 @@ export function HeroBackground({ imageSrc, alt = 'Background' }: HeroBackgroundP
       className="fixed inset-0 z-0 pointer-events-none"
       style={{ height: '100vh' }}
     >
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white/70 z-10" />
+      {/* Overlay gradient - เพิ่มความจางและ smooth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/60 to-white/90 z-10" />
       
       {/* Background image */}
       <div ref={imageRef} className="relative w-full h-full">
@@ -70,7 +70,7 @@ export function HeroBackground({ imageSrc, alt = 'Background' }: HeroBackgroundP
           src={imageSrc}
           alt={alt}
           fill
-          className="object-cover object-center opacity-60"
+          className="object-cover object-center opacity-30"
           priority
           quality={90}
         />

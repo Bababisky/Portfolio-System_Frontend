@@ -4,17 +4,16 @@
  */
 
 export const SITE_CONFIG = {
-  name: 'Portfolio System',
-  description: 'Showcasing our best work and talented teams',
-  url: 'https://portfolio.example.com',
+  name: 'Enterprise Solutions',
+  description: 'Comprehensive technology solutions and services',
+  url: 'https://solutions.example.com',
   ogImage: '/images/og-image.jpg',
 } as const;
 
 export const NAVIGATION = {
   main: [
     { label: 'Home', href: '/' },
-    { label: 'Works', href: '/works' },
-    { label: 'Teams', href: '/teams' },
+    { label: 'Solutions', href: '/solutions' },
   ],
   footer: [
     { label: 'About', href: '/about' },
