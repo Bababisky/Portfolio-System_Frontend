@@ -136,6 +136,19 @@ export function Header() {
               </div>
             </li>
 
+            {/* Partners */}
+            <li>
+              <Link
+                href="/vendors"
+                onClick={(e) => handleNavClick(e, '/vendors')}
+                className={`text-base font-medium transition-colors ${
+                  pathname.startsWith('/vendors') ? 'text-red-600' : 'text-neutral-600 hover:text-neutral-900'
+                }`}
+              >
+                {t('partners')}
+              </Link>
+            </li>
+
             {/* About us with dropdown */}
             <li className="relative group">
               <button className={`text-base font-medium transition-colors flex items-center gap-1 ${

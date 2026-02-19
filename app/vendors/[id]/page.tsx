@@ -5,9 +5,11 @@
 
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
-import { getVendorWithRelations } from '@/lib/mockData';
+import { fetchVendorById } from '@/lib/api';
+import { transformVendor } from '@/lib/vendorHelpers';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 interface PageProps {
   params: {
@@ -15,14 +17,49 @@ interface PageProps {
   };
 }
 
-export default function VendorPage({ params }: PageProps) {
-  const vendorData = getVendorWithRelations(params.id);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const vendorId = parseInt(params.id);
+  
+  if (isNaN(vendorId)) {
+    return {
+      title: 'Vendor Not Found',
+    };
+  }
 
-  if (!vendorData) {
+  const apiVendor = await fetchVendorById(vendorId);
+
+  if (!apiVendor) {
+    return {
+      title: 'Vendor Not Found',
+    };
+  }
+
+  const vendor = transformVendor(apiVendor);
+
+  return {
+    title: `${vendor.name} | Technology Partner | YIP IN TSOI`,
+    description: vendor.description || `Learn more about our partnership with ${vendor.name}`,
+  };
+}
+
+export default async function VendorPage({ params }: PageProps) {
+  const vendorId = parseInt(params.id);
+  
+  if (isNaN(vendorId)) {
     notFound();
   }
 
-  const { offerings, caseStudies, ...vendor } = vendorData;
+  const apiVendor = await fetchVendorById(vendorId);
+
+  if (!apiVendor) {
+    notFound();
+  }
+
+  const vendor = transformVendor(apiVendor);
+
+  // TODO: Fetch related offerings and case studies from API when available
+  const offerings: any[] = [];
+  const caseStudies: any[] = [];
 
   return (
     <>
@@ -51,21 +88,33 @@ export default function VendorPage({ params }: PageProps) {
               </h1>
 
               {/* Description */}
-              <p className="text-xl text-neutral-600 leading-relaxed mb-6">
-                {vendor.description}
-              </p>
-
-              {/* Website Link */}
-              {vendor.website && (
-                <a
-                  href={vendor.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-primary-600 hover:text-primary-700 font-medium"
-                >
-                  Visit Website →
-                </a>
+              {vendor.description && (
+                <p className="text-xl text-neutral-600 leading-relaxed mb-6">
+                  {vendor.description}
+                </p>
               )}
+
+              {/* Contact & Website */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                {vendor.website && (
+                  <a
+                    href={vendor.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-primary-600 hover:text-primary-700 font-medium"
+                  >
+                    Visit Website →
+                  </a>
+                )}
+                {vendor.contactEmail && (
+                  <a
+                    href={`mailto:${vendor.contactEmail}`}
+                    className="inline-block text-primary-600 hover:text-primary-700 font-medium"
+                  >
+                    Contact: {vendor.contactEmail}
+                  </a>
+                )}
+              </div>
             </ScrollReveal>
           </div>
         </section>
