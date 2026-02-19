@@ -129,22 +129,22 @@ export default function VendorsPage() {
                     </div>
 
                     {/* Vendor Name */}
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
+                    <h3 className="text-xl font-semibold mb-4 group-hover:text-primary-600 transition-colors">
                       {vendor.name}
                     </h3>
 
-                    {/* Description */}
-                    {vendor.description && (
-                      <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
-                        {vendor.description}
-                      </p>
-                    )}
-
                     {/* Website */}
                     {vendor.website && (
-                      <div className="text-sm text-primary-600 group-hover:text-primary-700">
-                        Visit Website →
-                      </div>
+                      <a 
+                        href={vendor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm flex items-center gap-2"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <span className="text-primary-600 group-hover:text-primary-700">Visit Website →</span>
+                        <span className="text-neutral-600 hover:underline">{vendor.website}</span>
+                      </a>
                     )}
                   </Link>
                 </ScrollReveal>
