@@ -163,14 +163,14 @@ export default function HomePage() {
             {bestProducts.map((product, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
                 <Link href={`/products/${index + 1}`}>
-                  <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer">
-                    <div className="h-48 bg-neutral-200 relative">
+                  <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer h-full flex flex-col">
+                    <div className="h-48 bg-neutral-200 relative flex-shrink-0">
                       {/* Placeholder for product image */}
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-300 to-neutral-400">
                         <span className="text-neutral-600 font-semibold">{product.title}</span>
                       </div>
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex flex-col flex-1">
                       <div className="flex justify-between items-center mb-4">
                         <span className="text-sm text-red-600 font-medium">{product.tag}</span>
                         <span className="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded-full">
@@ -178,7 +178,7 @@ export default function HomePage() {
                         </span>
                       </div>
                       <h3 className="text-2xl font-bold mb-3">{product.title}</h3>
-                      <p className="text-neutral-600 text-sm mb-6 leading-relaxed">
+                      <p className="text-neutral-600 text-sm mb-6 leading-relaxed line-clamp-4 flex-1">
                         {product.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
