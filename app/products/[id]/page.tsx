@@ -1,10 +1,10 @@
 /**
  * Product Detail Page
  */
+'use client';
 
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
-import Image from 'next/image';
 import Link from 'next/link';
 
 // Product data
@@ -49,6 +49,10 @@ const productsData = [
       'Mae Fah Luang University'
     ],
     certificates: [
+      'AWS Certified Cloud Practitioner (10)',
+      'AWS Certified AI Practitioner (2)'
+    ],
+    serviceOfferings: [
       'Cloud Migration Service certificate',
       'Cloud Migration Service certificate'
     ],
@@ -62,6 +66,7 @@ const productsData = [
     services: [],
     caseStudies: [],
     certificates: [],
+    serviceOfferings: [],
     vendors: []
   },
   {
@@ -72,6 +77,7 @@ const productsData = [
     services: [],
     caseStudies: [],
     certificates: [],
+    serviceOfferings: [],
     vendors: []
   }
 ];
@@ -163,14 +169,27 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               <h2 className="text-4xl font-bold mb-12">Case Study</h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {product.caseStudies.map((study, index) => (
-                <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="bg-white rounded-lg p-6 text-center shadow hover:shadow-lg transition-shadow">
-                    <div className="w-16 h-16 bg-red-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">🎓</span>
+                <ScrollReveal key={index} delay={index * 0.05}>
+                  <div className="bg-white border border-neutral-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-4 overflow-hidden">
+                        <img 
+                          src="/images/logos/mfu-logo.png" 
+                          alt={study}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            // Fallback to emoji if image not found
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.parentElement!.innerHTML = '<span class="text-3xl">🎓</span>';
+                          }}
+                        />
+                      </div>
+                      <h3 className="text-base font-semibold text-neutral-900">
+                        {study}
+                      </h3>
                     </div>
-                    <p className="font-semibold">{study}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -179,19 +198,21 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         </section>
       )}
 
-      {/* Service Offering Section */}
+      {/* Certificate Section */}
       {product.certificates.length > 0 && (
         <section className="py-20 bg-white">
           <div className="container mx-auto px-8 max-w-7xl">
             <ScrollReveal>
-              <h2 className="text-4xl font-bold mb-12">Service Offering</h2>
+              <h2 className="text-4xl font-bold mb-12">Certificate</h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {product.certificates.map((cert, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="bg-neutral-100 rounded-lg p-8 h-64 flex items-center justify-center">
-                    <p className="text-center font-semibold">{cert}</p>
+                  <div className="bg-white border border-neutral-300 rounded-full px-8 py-4 hover:shadow-lg transition-shadow">
+                    <h3 className="text-lg font-bold text-neutral-900 text-center">
+                      {cert}
+                    </h3>
                   </div>
                 </ScrollReveal>
               ))}
@@ -208,11 +229,15 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               <h2 className="text-4xl font-bold mb-12">Vendors</h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {product.vendors.map((vendor, index) => (
-                <ScrollReveal key={index} delay={index * 0.05}>
-                  <div className="bg-white rounded-lg p-6 flex items-center justify-center h-24 shadow hover:shadow-lg transition-shadow">
-                    <span className="font-semibold text-sm text-center">{vendor}</span>
+                <ScrollReveal key={index} delay={index * 0.03}>
+                  <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-center h-24">
+                      <span className="text-base font-semibold text-neutral-700 text-center">
+                        {vendor}
+                      </span>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}

@@ -57,7 +57,7 @@ export function Header() {
             className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img 
-              src="/images/logos/logo.png" 
+              src="/images/logos/yip-logo.png" 
               alt="YIP IN TSOI" 
               className="h-12 w-auto"
             />
