@@ -99,32 +99,32 @@ export function Header() {
                   <div className="absolute left-0 mt-0 pt-2 w-64 z-50">
                     <div className="bg-white rounded-xl shadow-xl border border-neutral-200 py-3">
                       <Link
-                        href="/solutions/1"
-                        onClick={(e) => handleNavClick(e, '/solutions/1')}
+                        href="/solutions/cloudandinfrastructuremodernization"
+                        onClick={(e) => handleNavClick(e, '/solutions/cloudandinfrastructuremodernization')}
                         className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
                       >
                         <div className="font-semibold text-neutral-900">Cloud & Infrastructure</div>
                         <div className="text-sm text-neutral-600">Modernization Solutions</div>
                       </Link>
                       <Link
-                        href="/solutions/2"
-                        onClick={(e) => handleNavClick(e, '/solutions/2')}
+                        href="/solutions/cybersecurity"
+                        onClick={(e) => handleNavClick(e, '/solutions/cybersecurity')}
                         className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
                       >
                         <div className="font-semibold text-neutral-900">Cyber Security</div>
                         <div className="text-sm text-neutral-600">Security Solutions</div>
                       </Link>
                       <Link
-                        href="/solutions/3"
-                        onClick={(e) => handleNavClick(e, '/solutions/3')}
+                        href="/solutions/digitalbusinesssolutions"
+                        onClick={(e) => handleNavClick(e, '/solutions/digitalbusinesssolutions')}
                         className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
                       >
                         <div className="font-semibold text-neutral-900">Digital Business</div>
                         <div className="text-sm text-neutral-600">Transformation Solutions</div>
                       </Link>
                       <Link
-                        href="/solutions/4"
-                        onClick={(e) => handleNavClick(e, '/solutions/4')}
+                        href="/solutions/dataanalyticandaisolutions"
+                        onClick={(e) => handleNavClick(e, '/solutions/dataanalyticandaisolutions')}
                         className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
                       >
                         <div className="font-semibold text-neutral-900">Data Analytics & AI</div>

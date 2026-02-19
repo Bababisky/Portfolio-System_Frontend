@@ -10,23 +10,27 @@ import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Solution data
+// Solution data with slugs
 const solutionsData = [
   {
     id: 1,
+    slug: 'cloudandinfrastructuremodernization',
     name: 'Cloud and Infrastructure Modernization',
     shortDescription: 'ยกระดับระบบโครงสร้างพื้นฐานทาง IT ของธุรกิจ ผสานระบบ Cloud และ On-Premises สู่ Hybrid Multi-Cloud',
     fullDescription: `In today's ever-evolving business landscape, technology stands as the cornerstone supporting every facet of operations. Infrastructure systems, whether they reside in the Cloud or On-Premises, now serve as the critical backbone that ensures the seamless and stable progression of technological pursuits. This, in turn, guarantees the uninterrupted and efficient performance of Business Applications and Digital Services, which are pivotal to business success, ensuring they yield the maximum return on investment.
 
 Yip In Tsoi is a recognized expert in delivering comprehensive IT solutions tailored for Thai enterprises, with extensive experience in the field. We stand ready to assist in elevating IT infrastructure to a new level, aligning with the Hybrid Multi-Cloud model to meet the evolving demands of today's business landscape. Our solutions, encompassing Cloud and Infrastructure Modernization, not only leverage cutting-edge technology and innovative concepts but also come with a team of seasoned professionals. These experts possess the skills to carefully plan, design, select, implement, integrate, train, and maintain the system, ensuring it operates at its maximum potential. We are dedicated to assisting you in achieving the utmost efficiency and productivity in IT operations.`,
+    bgImage: '/images/backgrounds/cloudinframod.png',
     offerings: [
       {
+        slug: 'cloudmigration',
         name: 'Cloud Migration',
         tag: 'Cloud Modernization',
         description: 'The Cloud has transformed into a foundational infrastructure for businesses, and the migration of traditional IT systems to the Cloud, for increased flexibility, has become one of the top strategic priorities for businesses worldwide, including Thailand.',
         partners: ['AWS', 'Google Cloud', 'ORACLE', 'NetApp']
       },
       {
+        slug: 'cloudmanagement',
         name: 'Cloud Management',
         tag: 'Cloud Infrastructure',
         description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges.',
@@ -36,58 +40,72 @@ Yip In Tsoi is a recognized expert in delivering comprehensive IT solutions tail
   },
   {
     id: 2,
+    slug: 'cybersecurity',
     name: 'Cyber Security',
     shortDescription: 'Augment security for the Cloud, Data Center, devices, and users across the organization',
     fullDescription: 'Comprehensive cybersecurity solutions to protect your digital assets and ensure business continuity.',
+    bgImage: '/images/backgrounds/cybersecurity.png',
     offerings: []
   },
   {
     id: 3,
+    slug: 'digitalbusinesssolutions',
     name: 'Digital Business Solutions',
     shortDescription: 'Transform into Digital Business and confidently pursue Digital Transformation',
     fullDescription: 'End-to-end digital transformation solutions to modernize your business operations.',
+    bgImage: '/images/backgrounds/digitalbusiness.png',
     offerings: []
   },
   {
     id: 4,
+    slug: 'dataanalyticandaisolutions',
     name: 'Data Analytic & AI Solutions',
     shortDescription: 'Turning business data into value, laying the foundation for data management',
     fullDescription: 'Advanced analytics and AI solutions to unlock insights from your data.',
+    bgImage: '/images/backgrounds/dataanalytics.png',
     offerings: []
   },
   {
     id: 5,
+    slug: 'financialandbankingservices',
     name: 'Financial & Banking Services',
     shortDescription: 'Unlock the potential of the finance and banking business',
     fullDescription: 'Specialized solutions for financial services and banking sector.',
+    bgImage: '/images/backgrounds/financial.png',
     offerings: []
   },
   {
     id: 6,
+    slug: 'professionalservice',
     name: 'Professional Service',
     shortDescription: 'Ensure continuous agility in managing and maintaining your IT systems',
     fullDescription: 'Comprehensive 24x7 professional services for IT operations.',
+    bgImage: '/images/backgrounds/professional.png',
     offerings: []
   },
   {
     id: 7,
+    slug: 'cns',
     name: 'CNS : Communication Navigation Surveillance',
     shortDescription: 'Communication systems, air navigation systems and aircraft surveillance system',
     fullDescription: 'Essential systems for pilots and air traffic controllers to facilitate safe aviation operations.',
+    bgImage: '/images/backgrounds/cns.png',
+    bgPosition: 'center 30%',
     offerings: []
   },
   {
     id: 8,
+    slug: 'mediainnovation',
     name: 'Media Innovation',
     shortDescription: 'Virtual Reality Production for creative content',
     fullDescription: 'Innovative media production solutions using virtual reality technology.',
+    bgImage: '/images/backgrounds/media.png',
     offerings: []
   }
 ];
 
-export default function SolutionDetailPage({ params }: { params: { id: string } }) {
-  const solutionId = parseInt(params.id);
-  const solution = solutionsData.find(s => s.id === solutionId);
+export default function SolutionDetailPage({ params }: { params: { slug: string } }) {
+  const solution = solutionsData.find(s => s.slug === params.slug);
   const [expandedOffering, setExpandedOffering] = useState<number | null>(null);
 
   if (!solution) {
@@ -112,7 +130,7 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
             <ScrollReveal>
               <div className="max-w-4xl">
                 <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                  {solutionId}. {solution.name}
+                  {solution.name}
                 </h1>
                 <p className="text-xl text-neutral-700">
                   {solution.shortDescription}
@@ -143,13 +161,15 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
             {/* Sidebar - Pattern Image */}
             <div className="lg:col-span-1">
               <ScrollReveal delay={0.2}>
-                <div className="sticky top-24 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-lg p-8 h-96">
-                  <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                    {/* Pattern placeholder */}
-                    <div className="text-center">
-                      <div className="text-6xl mb-4">☁️</div>
-                      <p className="text-sm">Infrastructure Pattern</p>
-                    </div>
+                <div className="sticky top-24 rounded-lg overflow-hidden h-96">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={solution.bgImage}
+                      alt={solution.name}
+                      fill
+                      className="object-cover"
+                      style={{ objectPosition: solution.bgPosition || 'center' }}
+                    />
                   </div>
                 </div>
               </ScrollReveal>
@@ -219,7 +239,7 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
                             {offering.description}
                           </p>
                           <Link 
-                            href={`/products/${index + 1}`}
+                            href={`/products/${offering.slug}`}
                             className="inline-block w-full py-3 bg-neutral-300 text-neutral-800 text-center font-medium rounded hover:bg-neutral-400 transition-colors"
                           >
                             Read more
@@ -245,7 +265,7 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {solutionsData.map((sol, index) => (
               <ScrollReveal key={sol.id} delay={index * 0.05}>
-                <Link href={`/solutions/${sol.id}`}>
+                <Link href={`/solutions/${sol.slug}`}>
                   <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-xl transition-all cursor-pointer group hover:border-red-300">
                     <div className="flex items-start gap-3">
                       <span className="text-neutral-400 font-medium">{sol.id}.</span>

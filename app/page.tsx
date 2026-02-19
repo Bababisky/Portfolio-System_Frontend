@@ -15,41 +15,50 @@ export default function HomePage() {
   // Solutions data
   const solutions = [
     {
+      slug: 'cloudandinfrastructuremodernization',
       name: 'Cloud and Infrastructure Modernization',
       description: 'ยกระดับระบบโครงสร้างพื้นฐานทาง IT ของธุรกิจ ผสานระบบ Cloud และ On-Premises สู่ Hybrid Multi-Cloud',
       bgImage: '/images/backgrounds/cloudinframod.png'
     },
     {
+      slug: 'cybersecurity',
       name: 'Cyber Security',
       description: 'Augment security for the Cloud, Data Center, devices, and users across the organization with Yip In Tsoi\'s comprehensive range of solutions and services.',
       bgImage: '/images/backgrounds/cybersecurity.png'
     },
     {
+      slug: 'digitalbusinesssolutions',
       name: 'Digital Business Solutions',
       description: 'Transform into Digital Business and confidently pursue Digital Transformation with Yip In Tsoi',
       bgImage: '/images/backgrounds/digitalbusiness.png'
     },
     {
+      slug: 'dataanalyticandaisolutions',
       name: 'Data Analytic & AI Solutions',
       description: 'Turning business data into value, laying the foundation for data management to create innovations for sustainable business growth',
       bgImage: '/images/backgrounds/dataanalytics.png'
     },
     {
+      slug: 'financialandbankingservices',
       name: 'Financial & Banking Services',
       description: 'Unlock the potential of the finance and banking business, expanding access to service seamlessly.',
       bgImage: '/images/backgrounds/financial.png'
     },
     {
+      slug: 'professionalservice',
       name: 'Professional Service',
       description: 'Ensure continuous agility in managing and maintaining your IT systems with Yip In Tsoi\'s comprehensive 24x7 services.',
       bgImage: '/images/backgrounds/professional.png'
     },
     {
+      slug: 'cns',
       name: 'CNS : Communication Navigation Surveillance',
       description: 'Communication systems, air navigation systems and aircraft surveillance system. It is an essential system for pilots and air traffic controllers. These facilitate the process of determining where the plane is and when and how to reach its destination.',
-      bgImage: '/images/backgrounds/cns.png'
+      bgImage: '/images/backgrounds/cns.png',
+      bgPosition: 'center 30%'
     },
     {
+      slug: 'mediainnovation',
       name: 'Media Innovation',
       description: 'Virtual Reality Production offers directors and producers the opportunity to create a wide and believable vision of landscape and wildlife from their own inspirational sources.',
       bgImage: '/images/backgrounds/media.png'
@@ -59,6 +68,7 @@ export default function HomePage() {
   // Best of Product cards
   const bestProducts = [
     {
+      slug: 'cloudmigration',
       title: 'Cloud Migration',
       tag: 'Cloud Modernization',
       description: 'The Cloud has transformed into a foundational infrastructure for businesses, and the migration of traditional IT systems to the Cloud, for increased flexibility, has become one of the top strategic priorities for businesses worldwide, including Thailand.',
@@ -66,6 +76,7 @@ export default function HomePage() {
       partners: ['AWS', 'Google Cloud', 'ORACLE', 'NetApp']
     },
     {
+      slug: 'cloudmanagement',
       title: 'Cloud Management',
       tag: 'Cloud Infrastructure',
       description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges.',
@@ -73,6 +84,7 @@ export default function HomePage() {
       partners: ['AWS', 'Google Cloud', 'Microsoft']
     },
     {
+      slug: 'dataanalyticssolutions',
       title: 'Data Analytics Solutions',
       tag: 'Data',
       description: 'Turning business data into value, establishing the foundation for data management to create innovations for Sustainable Business Growth. Nowadays, data has become another key element in the operations of every...',
@@ -134,7 +146,7 @@ export default function HomePage() {
         <div className="space-y-0">
           {solutions.map((solution, index) => (
             <ScrollReveal key={index} delay={index * 0.05}>
-              <Link href={`/solutions/${index + 1}`}>
+              <Link href={`/solutions/${solution.slug}`}>
                 <div 
                   className="border-b border-neutral-200 py-8 transition-all cursor-pointer group relative overflow-hidden"
                 >
@@ -144,7 +156,7 @@ export default function HomePage() {
                     style={{
                       backgroundImage: `url(${solution.bgImage})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: solution.bgPosition || 'center'
                     }}
                   ></div>
                   
@@ -176,7 +188,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {bestProducts.map((product, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <Link href={`/products/${index + 1}`}>
+                <Link href={`/products/${product.slug}`}>
                   <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer h-full flex flex-col">
                     <div className="h-48 bg-neutral-200 relative flex-shrink-0">
                       {/* Placeholder for product image */}

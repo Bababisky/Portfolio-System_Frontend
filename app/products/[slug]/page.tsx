@@ -11,6 +11,7 @@ import Link from 'next/link';
 const productsData = [
   {
     id: 1,
+    slug: 'cloudmigration',
     name: 'Cloud Migration',
     tag: 'Cloud Modernization',
     description: 'The Cloud has transformed into a foundational infrastructure for businesses, and the migration of traditional IT systems to the Cloud, for increased flexibility, has become one of the top strategic priorities for businesses worldwide, including Thailand. Yip In Tsoi is well-prepared and ready to provide comprehensive Cloud Migration services.',
@@ -60,6 +61,7 @@ const productsData = [
   },
   {
     id: 2,
+    slug: 'cloudmanagement',
     name: 'Cloud Management',
     tag: 'Cloud Infrastructure',
     description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges.',
@@ -71,6 +73,7 @@ const productsData = [
   },
   {
     id: 3,
+    slug: 'dataanalyticssolutions',
     name: 'Data Analytics Solutions',
     tag: 'Data',
     description: 'Turning business data into value, establishing the foundation for data management to create innovations for Sustainable Business Growth.',
@@ -82,9 +85,8 @@ const productsData = [
   }
 ];
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const productId = parseInt(params.id);
-  const product = productsData.find(p => p.id === productId);
+export default function ProductDetailPage({ params }: { params: { slug: string } }) {
+  const product = productsData.find(p => p.slug === params.slug);
 
   if (!product) {
     return (
@@ -230,17 +232,24 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
             </ScrollReveal>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {product.vendors.map((vendor, index) => (
-                <ScrollReveal key={index} delay={index * 0.03}>
-                  <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-                    <div className="flex items-center justify-center h-24">
-                      <span className="text-base font-semibold text-neutral-700 text-center">
-                        {vendor}
-                      </span>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {product.vendors.map((vendor, index) => {
+                // Convert vendor name to slug
+                const vendorSlug = vendor.toLowerCase().replace(/\s+/g, '');
+                
+                return (
+                  <ScrollReveal key={index} delay={index * 0.03}>
+                    <Link href={`/vendors/${vendorSlug}`}>
+                      <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-lg transition-shadow cursor-pointer hover:border-red-300">
+                        <div className="flex items-center justify-center h-24">
+                          <span className="text-base font-semibold text-neutral-700 text-center">
+                            {vendor}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </section>
