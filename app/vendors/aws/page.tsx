@@ -3,11 +3,14 @@
  */
 'use client';
 
+import { useState } from 'react';
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
 import Link from 'next/link';
 
 export default function CertificatesPage() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   const certificates = [
     { name: 'AWS Certified Cloud Practitioner', count: 10 },
     { name: 'AWS Certified AI Practitioner', count: 2 }
@@ -102,9 +105,9 @@ export default function CertificatesPage() {
       <section className="py-12 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto">
           {/* Cloud Button - Top Right */}
-          <div className="absolute top-8 right-8">
-            <button className="px-6 py-2 bg-neutral-200 text-neutral-700 rounded-lg hover:bg-neutral-300 transition-colors font-medium">
-              cloud
+          <div className="absolute -top-12 right-8">
+            <button className="px-6 py-2 bg-white border border-red-600 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors font-medium">
+              Cloud
             </button>
           </div>
 

@@ -7,6 +7,7 @@ export const translations = {
     // Navigation
     home: 'Home',
     solutionsProduct: 'Solutions & Product',
+    partners: 'Partners',
     aboutUs: 'About us',
     language: 'Language',
     
@@ -39,6 +40,7 @@ export const translations = {
     // Navigation
     home: 'หน้าแรก',
     solutionsProduct: 'โซลูชัน & โปรดักส์',
+    partners: 'พันธมิตร',
     aboutUs: 'เกี่ยวกับเรา',
     language: 'ภาษา',
     

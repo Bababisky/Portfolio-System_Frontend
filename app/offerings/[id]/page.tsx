@@ -150,7 +150,7 @@ export default function OfferingDetailPage({ params }: PageProps) {
                 {offering.vendors.map((vendor) => (
                   <Link
                     key={vendor.id}
-                    href={`/vendors/${vendor.id}`}
+                    href={`/vendors/${vendor.name.toLowerCase().replace(/\s+/g, '')}`}
                     className="border border-neutral-200 rounded-lg p-6 text-center hover:border-primary-500 transition-colors group"
                   >
                     <h3 className="font-semibold text-lg group-hover:text-primary-600 transition-colors">

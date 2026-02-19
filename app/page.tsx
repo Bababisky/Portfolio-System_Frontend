@@ -5,6 +5,7 @@
 
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
+import { WorldClassPartnership } from '@/components/home/WorldClassPartnership';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,35 +16,43 @@ export default function HomePage() {
   const solutions = [
     {
       name: 'Cloud and Infrastructure Modernization',
-      description: 'ยกระดับระบบโครงสร้างพื้นฐานทาง IT ของธุรกิจ ผสานระบบ Cloud และ On-Premises สู่ Hybrid Multi-Cloud'
+      description: 'ยกระดับระบบโครงสร้างพื้นฐานทาง IT ของธุรกิจ ผสานระบบ Cloud และ On-Premises สู่ Hybrid Multi-Cloud',
+      bgImage: '/images/backgrounds/cloudinframod.png'
     },
     {
       name: 'Cyber Security',
-      description: 'Augment security for the Cloud, Data Center, devices, and users across the organization with Yip In Tsoi\'s comprehensive range of solutions and services.'
+      description: 'Augment security for the Cloud, Data Center, devices, and users across the organization with Yip In Tsoi\'s comprehensive range of solutions and services.',
+      bgImage: '/images/backgrounds/cybersecurity.png'
     },
     {
       name: 'Digital Business Solutions',
-      description: 'Transform into Digital Business and confidently pursue Digital Transformation with Yip In Tsoi'
+      description: 'Transform into Digital Business and confidently pursue Digital Transformation with Yip In Tsoi',
+      bgImage: '/images/backgrounds/digitalbusiness.png'
     },
     {
       name: 'Data Analytic & AI Solutions',
-      description: 'Turning business data into value, laying the foundation for data management to create innovations for sustainable business growth'
+      description: 'Turning business data into value, laying the foundation for data management to create innovations for sustainable business growth',
+      bgImage: '/images/backgrounds/dataanalytics.png'
     },
     {
       name: 'Financial & Banking Services',
-      description: 'Unlock the potential of the finance and banking business, expanding access to service seamlessly.'
+      description: 'Unlock the potential of the finance and banking business, expanding access to service seamlessly.',
+      bgImage: '/images/backgrounds/financial.png'
     },
     {
       name: 'Professional Service',
-      description: 'Ensure continuous agility in managing and maintaining your IT systems with Yip In Tsoi\'s comprehensive 24x7 services.'
+      description: 'Ensure continuous agility in managing and maintaining your IT systems with Yip In Tsoi\'s comprehensive 24x7 services.',
+      bgImage: '/images/backgrounds/professional.png'
     },
     {
       name: 'CNS : Communication Navigation Surveillance',
-      description: 'Communication systems, air navigation systems and aircraft surveillance system. It is an essential system for pilots and air traffic controllers. These facilitate the process of determining where the plane is and when and how to reach its destination.'
+      description: 'Communication systems, air navigation systems and aircraft surveillance system. It is an essential system for pilots and air traffic controllers. These facilitate the process of determining where the plane is and when and how to reach its destination.',
+      bgImage: '/images/backgrounds/cns.png'
     },
     {
       name: 'Media Innovation',
-      description: 'Virtual Reality Production offers directors and producers the opportunity to create a wide and believable vision of landscape and wildlife from their own inspirational sources.'
+      description: 'Virtual Reality Production offers directors and producers the opportunity to create a wide and believable vision of landscape and wildlife from their own inspirational sources.',
+      bgImage: '/images/backgrounds/media.png'
     }
   ];
 
@@ -86,38 +95,26 @@ export default function HomePage() {
     { name: 'YIPINTSOI ENERGY', logo: '/images/subsidiaries/energy.png' }
   ];
 
-  // World Class Partners
-  const partners = [
-    'AWS', 'Apple', 'Dell Technologies', 'Google Cloud', 'ITI', 'AIRFIELD',
-    'CASPER', 'CADEX', 'Checkmarx', 'CISCO', 'EC Council', 'CROWDSTRIKE',
-    'F1S', 'FORTINET', 'FREEDOM', 'FORESCOUT', 'FREQUENTIS', 'guardREC',
-    'HPE', 'Hitachi Vantara', 'HP', 'IBM', 'HPE aruba', 'HUAWEI',
-    'Informatica', 'KAC', 'MANDIANT', 'Microsoft', 'netka', 'netskope',
-    'Microsoft Azure', 'NetApp', 'NUTANIX', 'NVIDIA', 'Red Hat', 'Open Metadata',
-    'ORACLE', 'paloalto', 'SANGFOR', 'PARK AIR', 'SAS', 'splunk',
-    'VMware', 'tableau', 'tenable', 'VERITAS', 'TREND', 'veeam',
-    'Wolters Kluwer', 'YOUYANG', 'zscaler'
-  ];
-
   return (
     <PageTransition>
       {/* Hero Section */}
       <section className="relative h-screen">
         <Image
-          src="/images/yip-in-tsoi-building.jpg"
+          src="/images/backgrounds/yip-in-tsoi-building.jpg"
           alt="Yip In Tsoi Building"
           fill
           className="object-cover"
           priority
         />
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 flex items-center justify-center text-center px-4">
           <div>
-            <h1 className="text-7xl md:text-8xl font-bold leading-tight mb-6">
+            <h1 className="text-7xl md:text-8xl font-bold leading-tight mb-6 drop-shadow-lg">
               <div className="text-red-600">{t('heroTitle1')}</div>
               <div className="text-red-600">{t('heroTitle2')}</div>
               <div className="text-red-600">{t('heroTitle3')}</div>
             </h1>
-            <p className="text-black text-xl max-w-4xl mx-auto leading-relaxed">
+            <p className="text-white text-xl max-w-4xl mx-auto leading-relaxed drop-shadow-md bg-black/20 px-8 py-4 rounded-lg backdrop-blur-sm">
               {t('heroSubtitle')}
             </p>
           </div>
@@ -125,28 +122,45 @@ export default function HomePage() {
       </section>
 
       {/* Solutions & Product Section */}
-      <section className="py-20 bg-gradient-to-b from-red-50 to-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-8 max-w-7xl">
           <ScrollReveal>
             <h2 className="text-5xl font-bold mb-12">
-              {t('solutionsTitle')}
+              Products <span className="text-red-600">&</span> Solutions
             </h2>
           </ScrollReveal>
+        </div>
 
-          <div className="space-y-1">
-            {solutions.map((solution, index) => (
-              <ScrollReveal key={index} delay={index * 0.05}>
-                <Link href={`/solutions/${index + 1}`}>
-                  <div className="border-b border-neutral-300 py-6 hover:bg-red-50 transition-colors cursor-pointer">
-                    <div className="flex items-start gap-8">
-                      <h3 className="text-xl font-semibold w-1/3">{solution.name}</h3>
-                      <p className="text-neutral-600 w-2/3">{solution.description}</p>
+        <div className="space-y-0">
+          {solutions.map((solution, index) => (
+            <ScrollReveal key={index} delay={index * 0.05}>
+              <Link href={`/solutions/${index + 1}`}>
+                <div 
+                  className="border-b border-neutral-200 py-8 transition-all cursor-pointer group relative overflow-hidden"
+                >
+                  {/* Background image - only visible on hover */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      backgroundImage: `url(${solution.bgImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  ></div>
+                  
+                  {/* Dark overlay on hover */}
+                  <div className="absolute inset-0 bg-neutral-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  <div className="container mx-auto px-8 max-w-7xl relative z-10">
+                    <div className="flex items-start gap-12">
+                      <h3 className="text-xl font-medium w-1/3 text-neutral-800 group-hover:text-white transition-colors">{solution.name}</h3>
+                      <p className="text-neutral-500 w-2/3 text-base group-hover:text-neutral-200 transition-colors">{solution.description}</p>
                     </div>
                   </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
@@ -223,20 +237,7 @@ export default function HomePage() {
           </div>
 
           {/* World Class Partnership */}
-          <div>
-            <div className="bg-gradient-to-r from-red-600 to-red-400 text-white py-4 px-8 mb-8">
-              <h3 className="text-3xl font-bold">{t('worldClassPartnership')}</h3>
-            </div>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-              {partners.map((partner, index) => (
-                <ScrollReveal key={index} delay={index * 0.02}>
-                  <div className="bg-white border border-neutral-200 rounded-lg p-4 flex items-center justify-center h-20 hover:shadow-lg transition-shadow">
-                    <span className="text-xs font-semibold text-center">{partner}</span>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
+          <WorldClassPartnership />
         </div>
       </section>
     </PageTransition>
