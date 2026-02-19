@@ -19,6 +19,7 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -78,16 +79,61 @@ export function Header() {
             </li>
 
             {/* Solution & Product with dropdown */}
-            <li className="relative group">
-              <button className={`text-base font-medium transition-colors flex items-center gap-1 ${
-                pathname.startsWith('/solutions') ? 'text-red-600' : 'text-neutral-600 hover:text-neutral-900'
-              }`}>
-                {t('solutionsProduct')}
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {/* Dropdown menu - will be implemented later */}
+            <li className="relative">
+              <div
+                onMouseEnter={() => setIsSolutionsOpen(true)}
+                onMouseLeave={() => setIsSolutionsOpen(false)}
+                className="relative"
+              >
+                <button className={`text-base font-medium transition-colors flex items-center gap-1 ${
+                  pathname.startsWith('/solutions') || pathname.startsWith('/products') ? 'text-red-600' : 'text-neutral-600 hover:text-neutral-900'
+                }`}>
+                  {t('solutionsProduct')}
+                  <svg className={`w-4 h-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {/* Dropdown menu */}
+                {isSolutionsOpen && (
+                  <div className="absolute left-0 mt-0 pt-2 w-64 z-50">
+                    <div className="bg-white rounded-xl shadow-xl border border-neutral-200 py-3">
+                      <Link
+                        href="/solutions/1"
+                        onClick={(e) => handleNavClick(e, '/solutions/1')}
+                        className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
+                      >
+                        <div className="font-semibold text-neutral-900">Cloud & Infrastructure</div>
+                        <div className="text-sm text-neutral-600">Modernization Solutions</div>
+                      </Link>
+                      <Link
+                        href="/solutions/2"
+                        onClick={(e) => handleNavClick(e, '/solutions/2')}
+                        className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
+                      >
+                        <div className="font-semibold text-neutral-900">Cyber Security</div>
+                        <div className="text-sm text-neutral-600">Security Solutions</div>
+                      </Link>
+                      <Link
+                        href="/solutions/3"
+                        onClick={(e) => handleNavClick(e, '/solutions/3')}
+                        className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
+                      >
+                        <div className="font-semibold text-neutral-900">Digital Business</div>
+                        <div className="text-sm text-neutral-600">Transformation Solutions</div>
+                      </Link>
+                      <Link
+                        href="/solutions/4"
+                        onClick={(e) => handleNavClick(e, '/solutions/4')}
+                        className="block px-4 py-3 hover:bg-neutral-50 transition-colors"
+                      >
+                        <div className="font-semibold text-neutral-900">Data Analytics & AI</div>
+                        <div className="text-sm text-neutral-600">AI Solutions</div>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
             </li>
 
             {/* About us with dropdown */}

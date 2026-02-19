@@ -162,10 +162,6 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
       {solution.offerings.length > 0 && (
         <section className="py-20 bg-neutral-50">
           <div className="container mx-auto px-8 max-w-7xl">
-            <ScrollReveal>
-              <h2 className="text-4xl font-bold mb-12">Our Offerings</h2>
-            </ScrollReveal>
-
             <div className="space-y-8">
               {solution.offerings.map((offering, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
@@ -238,6 +234,32 @@ export default function SolutionDetailPage({ params }: { params: { id: string } 
           </div>
         </section>
       )}
+
+      {/* All Solutions Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-8 max-w-7xl">
+          <ScrollReveal>
+            <h2 className="text-4xl font-bold mb-12">Section</h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {solutionsData.map((sol, index) => (
+              <ScrollReveal key={sol.id} delay={index * 0.05}>
+                <Link href={`/solutions/${sol.id}`}>
+                  <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-xl transition-all cursor-pointer group hover:border-red-300">
+                    <div className="flex items-start gap-3">
+                      <span className="text-neutral-400 font-medium">{sol.id}.</span>
+                      <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-red-600 transition-colors">
+                        {sol.name}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-600 to-red-500 text-white">

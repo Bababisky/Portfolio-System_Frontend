@@ -5,55 +5,59 @@
 
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
-import { getAllPublishedSolutions } from '@/lib/mockData';
 import Link from 'next/link';
 
 export default function SolutionsPage() {
-  const solutions = getAllPublishedSolutions();
+  const solutions = [
+    { id: 1, name: 'Cloud and Infrastructure Modernization' },
+    { id: 2, name: 'Cyber Security' },
+    { id: 3, name: 'Digital Business Solutions' },
+    { id: 4, name: 'Data Analytic & AI Solutions' },
+    { id: 5, name: 'Financial & Banking Services' },
+    { id: 6, name: 'Professional Service' },
+    { id: 7, name: 'CNS : Communication Navigation Surveillance' },
+    { id: 8, name: 'Media Innovation' }
+  ];
 
   return (
-    <>
-      <PageTransition>
-        {/* Header */}
-        <section className="section-padding pt-32 pb-16">
-          <div className="container-custom max-w-6xl text-center">
-            <ScrollReveal>
-              <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-                Our Solutions
-              </h1>
-              <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                Explore our comprehensive range of enterprise solutions
-              </p>
-            </ScrollReveal>
-          </div>
-        </section>
+    <PageTransition>
+      {/* Header */}
+      <section className="pt-32 pb-16 px-8">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <h1 className="text-6xl font-bold mb-6 text-red-600">
+              Solutions
+            </h1>
+            <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl">
+              ตอบทุกโจทย์ความต้องการของธุรกิจองค์กร ด้วยโซลูชันที่ครบถ้วนจาก Yip In Tsoi<br />
+              (Cloud and Infrastructure Modernization, Cybersecurity, Digital Business<br />
+              Solutions, Data and Analytics Solutions, Professional Service, FSI Solutions)
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* Solutions Grid */}
-        <section className="section-padding">
-          <div className="container-custom max-w-6xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {solutions.map((solution, index) => (
-                <ScrollReveal key={solution.id} delay={index * 0.1}>
-                  <Link
-                    href={`/solutions/${solution.id}`}
-                    className="block border border-neutral-200 rounded-lg p-8 hover:border-primary-500 hover:shadow-xl transition-all group"
-                  >
-                    <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary-600 transition-colors">
-                      {solution.name}
-                    </h2>
-                    <p className="text-neutral-600 mb-4">
-                      {solution.description}
-                    </p>
-                    <div className="text-primary-600 font-medium group-hover:translate-x-1 transition-transform inline-block">
-                      View offerings →
+      {/* Solutions Grid */}
+      <section className="pb-20 px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {solutions.map((solution, index) => (
+              <ScrollReveal key={solution.id} delay={index * 0.05}>
+                <Link href={`/solutions/${solution.id}`}>
+                  <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-xl transition-all cursor-pointer group hover:border-red-300">
+                    <div className="flex items-start gap-3">
+                      <span className="text-neutral-400 font-medium">{index + 1}.</span>
+                      <h2 className="text-lg font-semibold text-neutral-900 group-hover:text-red-600 transition-colors">
+                        {solution.name}
+                      </h2>
                     </div>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
-      </PageTransition>
-    </>
+        </div>
+      </section>
+    </PageTransition>
   );
 }
