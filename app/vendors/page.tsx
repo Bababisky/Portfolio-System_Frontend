@@ -3,29 +3,53 @@
  * Shows all technology partners/vendors
  */
 
+'use client';
+
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
-import { fetchVendors } from '@/lib/api';
-import { transformVendors } from '@/lib/vendorHelpers';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import type { VendorFromAPI } from '@/types';
+import { useEffect, useState } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Our Technology Partners | YIP IN TSOI',
-  description: 'We collaborate with leading technology vendors to deliver best-in-class solutions for our clients.',
-};
+export default function VendorsPage() {
+  const [vendors, setVendors] = useState<VendorFromAPI[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function VendorsPage() {
-  let vendors: VendorFromAPI[] = [];
-  let error: string | null = null;
+  useEffect(() => {
+    async function loadVendors() {
+      try {
+        const response = await fetch('/api/vendors');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch vendors');
+        }
+        
+        const data = await response.json();
+        setVendors(data);
+      } catch (e) {
+        console.error('Error loading vendors:', e);
+        setError('Failed to load vendors. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    }
 
-  try {
-    const apiVendors = await fetchVendors();
-    vendors = transformVendors(apiVendors);
-  } catch (e) {
-    error = 'Failed to load vendors. Please try again later.';
-    console.error('Error loading vendors:', e);
+    loadVendors();
+  }, []);
+
+  if (loading) {
+    return (
+      <PageTransition>
+        <section className="section-padding pt-32 pb-16">
+          <div className="container-custom max-w-6xl">
+            <div className="text-center py-16">
+              <p className="text-neutral-500 text-lg">Loading vendors...</p>
+            </div>
+          </div>
+        </section>
+      </PageTransition>
+    );
   }
 
   return (

@@ -44,10 +44,10 @@ const productsData = [
       }
     ],
     caseStudies: [
-      'Mae Fah Luang University',
-      'Mae Fah Luang University',
-      'Mae Fah Luang University',
-      'Mae Fah Luang University'
+      { name: 'Mae Fah Luang University', logo: 'mfu-logo.png' },
+      { name: 'Khon Kaen University', logo: 'kku-logo.png' },
+      { name: 'Mae Fah Luang University', logo: 'mfu-logo.png' },
+      { name: 'Khon Kaen University', logo: 'kku-logo.png' }
     ],
     certificates: [
       'AWS Certified Cloud Practitioner (10)',
@@ -176,11 +176,11 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 <ScrollReveal key={index} delay={index * 0.05}>
                   <div className="bg-white border border-neutral-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
                     <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-4 overflow-hidden">
+                      <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-4 overflow-hidden p-2">
                         <img 
-                          src="/images/logos/mfu-logo.png" 
-                          alt={study}
-                          className="w-full h-full object-cover"
+                          src={`/images/logos/${study.logo}`}
+                          alt={study.name}
+                          className="w-full h-full object-contain"
                           onError={(e) => {
                             // Fallback to emoji if image not found
                             e.currentTarget.style.display = 'none';
@@ -189,7 +189,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                         />
                       </div>
                       <h3 className="text-base font-semibold text-neutral-900">
-                        {study}
+                        {study.name}
                       </h3>
                     </div>
                   </div>
