@@ -5,6 +5,7 @@
 
 import { PageTransition } from '@/components/animation/PageTransition';
 import { ScrollReveal } from '@/components/animation/ScrollReveal';
+import { WorldClassPartnership } from '@/components/home/WorldClassPartnership';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -84,19 +85,6 @@ export default function HomePage() {
     { name: 'YIP IN TSOI solutions', logo: '/images/subsidiaries/yit-solutions.png' },
     { name: 'YIPINTSOI CONSULTING', logo: '/images/subsidiaries/consulting.png' },
     { name: 'YIPINTSOI ENERGY', logo: '/images/subsidiaries/energy.png' }
-  ];
-
-  // World Class Partners
-  const partners = [
-    'AWS', 'Apple', 'Dell Technologies', 'Google Cloud', 'ITI', 'AIRFIELD',
-    'CASPER', 'CADEX', 'Checkmarx', 'CISCO', 'EC Council', 'CROWDSTRIKE',
-    'F1S', 'FORTINET', 'FREEDOM', 'FORESCOUT', 'FREQUENTIS', 'guardREC',
-    'HPE', 'Hitachi Vantara', 'HP', 'IBM', 'HPE aruba', 'HUAWEI',
-    'Informatica', 'KAC', 'MANDIANT', 'Microsoft', 'netka', 'netskope',
-    'Microsoft Azure', 'NetApp', 'NUTANIX', 'NVIDIA', 'Red Hat', 'Open Metadata',
-    'ORACLE', 'paloalto', 'SANGFOR', 'PARK AIR', 'SAS', 'splunk',
-    'VMware', 'tableau', 'tenable', 'VERITAS', 'TREND', 'veeam',
-    'Wolters Kluwer', 'YOUYANG', 'zscaler'
   ];
 
   return (
@@ -223,20 +211,7 @@ export default function HomePage() {
           </div>
 
           {/* World Class Partnership */}
-          <div>
-            <div className="bg-gradient-to-r from-red-600 to-red-400 text-white py-4 px-8 mb-8">
-              <h3 className="text-3xl font-bold">{t('worldClassPartnership')}</h3>
-            </div>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-              {partners.map((partner, index) => (
-                <ScrollReveal key={index} delay={index * 0.02}>
-                  <div className="bg-white border border-neutral-200 rounded-lg p-4 flex items-center justify-center h-20 hover:shadow-lg transition-shadow">
-                    <span className="text-xs font-semibold text-center">{partner}</span>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
+          <WorldClassPartnership />
         </div>
       </section>
     </PageTransition>

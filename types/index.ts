@@ -67,6 +67,18 @@ export interface Vendor {
 }
 
 /**
+ * Vendor from API (normalized)
+ */
+export interface VendorFromAPI {
+  id: number;
+  name: string;
+  description: string | null;
+  logo: string;
+  website: string;
+  contactEmail: string;
+}
+
+/**
  * Case Study - ตัวอย่างผลงาน/โปรเจกต์
  */
 export interface CaseStudy {
