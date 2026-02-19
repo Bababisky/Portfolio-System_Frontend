@@ -11,6 +11,7 @@ import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useLenis } from '@/hooks/useLenis';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -22,8 +23,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   useScrollToTop();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <div key={pathname}>{children}</div>
-    </AnimatePresence>
+    <LanguageProvider>
+      <AnimatePresence mode="wait" initial={false}>
+        <div key={pathname}>{children}</div>
+      </AnimatePresence>
+    </LanguageProvider>
   );
 }
