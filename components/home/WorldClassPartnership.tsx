@@ -75,7 +75,7 @@ export function WorldClassPartnership() {
       <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
         {vendors.map((vendor, index) => (
           <ScrollReveal key={vendor.id} delay={index * 0.02}>
-            <Link href={`/vendors/${vendor.name.toLowerCase().replace(/\s+/g, '')}`}>
+            <Link href={`/partnership/${vendor.name.toLowerCase().replace(/\s+/g, '')}`}>
               <div className="bg-white border border-neutral-200 rounded-lg p-4 flex items-center justify-center h-20 hover:shadow-lg transition-shadow cursor-pointer group">
                 <span className="text-xs font-semibold text-center group-hover:text-red-600 transition-colors">
                   {vendor.name}

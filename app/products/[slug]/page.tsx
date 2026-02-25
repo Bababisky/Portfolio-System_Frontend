@@ -238,7 +238,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 
                 return (
                   <ScrollReveal key={index} delay={index * 0.03}>
-                    <Link href={`/vendors/${vendorSlug}`}>
+                    <Link href={`/partnership/${vendorSlug}`}>
                       <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-lg transition-shadow cursor-pointer hover:border-red-300">
                         <div className="flex items-center justify-center h-24">
                           <span className="text-base font-semibold text-neutral-700 text-center">

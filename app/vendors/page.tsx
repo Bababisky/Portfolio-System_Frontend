@@ -99,7 +99,7 @@ export default function VendorsPage() {
               {vendors.map((vendor, index) => (
                 <ScrollReveal key={vendor.id} delay={index * 0.05}>
                   <Link
-                    href={`/vendors/${vendor.name.toLowerCase().replace(/\s+/g, '')}`}
+                    href={`/partnership/${vendor.name.toLowerCase().replace(/\s+/g, '')}`}
                     className="block border border-neutral-200 rounded-lg p-8 hover:border-primary-500 hover:shadow-lg transition-all group"
                   >
                     {/* Vendor Logo/Icon */}
