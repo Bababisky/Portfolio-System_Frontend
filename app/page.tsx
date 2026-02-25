@@ -73,38 +73,91 @@ export default function HomePage() {
       tag: 'Cloud Modernization',
       description: 'The Cloud has transformed into a foundational infrastructure for businesses, and the migration of traditional IT systems to the Cloud, for increased flexibility, has become one of the top strategic priorities for businesses worldwide, including Thailand.',
       image: '/images/cloud-migration.jpg',
-      partners: ['AWS', 'Google Cloud', 'ORACLE', 'NetApp']
+      bgColor: 'from-neutral-200 to-neutral-300',
+      partners: [
+        { name: 'AWS', logo: '/images/logos/aws-logo.png' },
+        { name: 'Dell', logo: '/images/logos/dell-logo.png' },
+        { name: 'Google Cloud', logo: '/images/logos/googlecloud-logo.png' },
+        { name: 'Cisco', logo: '/images/logos/cisco-logo.png' },
+        { name: 'HPE', logo: '/images/logos/hpe-logo.png' },
+        { name: 'Huawei', logo: '/images/logos/huawei-logo.png' }
+      ]
+    },
+    {
+      slug: 'vmwareservice',
+      title: 'VMware Service Catalogue – Standard',
+      tag: 'Cloud Modernization',
+      tag2: 'Virtualization',
+      description: 'VMware Platform Services provides end-to-end virtualization and cloud infrastructure solutions covering design, implementation, migration, optimization, disaster recovery, and ongoing platform maintenance...',
+      image: '/images/vmware-service.jpg',
+      bgColor: 'from-neutral-100 to-neutral-200',
+      partners: [
+        { name: 'AWS', logo: '/images/logos/aws-logo.png' },
+        { name: 'Google Cloud', logo: '/images/logos/googlecloud-logo.png' },
+        { name: 'Cisco', logo: '/images/logos/cisco-logo.png' },
+        { name: 'HPE', logo: '/images/logos/hpe-logo.png' },
+        { name: 'Microsoft', logo: '/images/logos/microsoft-logo.png' },
+        { name: 'Nutanix', logo: '/images/logos/nutanix-logo.png' }
+      ]
     },
     {
       slug: 'cloudmanagement',
       title: 'Cloud Management',
       tag: 'Cloud Infrastructure',
-      description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges.',
+      tag2: 'Cloud',
+      description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges. This is due to the complexity arising from....',
       image: '/images/cloud-management.jpg',
-      partners: ['AWS', 'Google Cloud', 'Microsoft']
+      bgColor: 'from-pink-200 to-pink-300',
+      partners: [
+        { name: 'AWS', logo: '/images/logos/aws-logo.png' },
+        { name: 'Google Cloud', logo: '/images/logos/googlecloud-logo.png' },
+        { name: 'Microsoft', logo: '/images/logos/microsoft-logo.png' }
+      ]
+    },
+    {
+      slug: 'zerotrust',
+      title: 'Zero Trust Access & Network Security',
+      tag: 'Network Engineer',
+      tag2: 'Security',
+      description: 'The Zero Trust concept has gained widespread adoption as a fundamental security strategy for corporate IT systems. It involves implementing protocols that restrict access to Business Application systems, Data...',
+      image: '/images/zero-trust.jpg',
+      bgColor: 'from-blue-400 to-blue-500',
+      partners: [
+        { name: 'Netskope', logo: '/images/logos/netskope-logo.png' },
+        { name: 'Palo Alto', logo: '/images/logos/paloalto-logo.png' },
+        { name: 'Zscaler', logo: '/images/logos/zscaler-logo.png' }
+      ]
     },
     {
       slug: 'dataanalyticssolutions',
       title: 'Data Analytics Solutions',
-      tag: 'Data',
-      description: 'Turning business data into value, establishing the foundation for data management to create innovations for Sustainable Business Growth. Nowadays, data has become another key element in the operations of every...',
+      tag: 'Cloud Modernization',
+      tag2: 'Data',
+      description: 'Turning business data into value, establishing the foundation for data management to create innovations for Sustainable Business Growth. Nowadays, data has become another key element in the operations of every....',
       image: '/images/data-analytics.jpg',
-      partners: ['Google Cloud', 'NVIDIA']
+      bgColor: 'from-amber-900 to-stone-800',
+      partners: [
+        { name: 'Google Cloud', logo: '/images/logos/googlecloud-logo.png' },
+        { name: 'Microsoft', logo: '/images/logos/microsoft-logo.png' },
+        { name: 'NVIDIA', logo: '/images/logos/nvidia-logo.png' },
+        { name: 'SAS', logo: '/images/logos/sas-logo.png' },
+        { name: 'Tableau', logo: '/images/logos/tableau-logo.png' }
+      ]
     }
   ];
 
   // Subsidiaries
   const subsidiaries = [
-    { name: 'YIP IN TSOI', logo: '/images/subsidiaries/yipintsoi.png' },
-    { name: 'YBT JACKS', logo: '/images/subsidiaries/ybtjacks.png' },
-    { name: 'TCEL', logo: '/images/subsidiaries/tcel.png' },
-    { name: 'Tangerine', logo: '/images/subsidiaries/tangerine.png' },
-    { name: 'Robinhood', logo: '/images/subsidiaries/robinhood.png' },
-    { name: 'SISSONS', logo: '/images/subsidiaries/sissons.png' },
-    { name: 'Enrich Broker', logo: '/images/subsidiaries/eb.png' },
-    { name: 'YIP IN TSOI solutions', logo: '/images/subsidiaries/yit-solutions.png' },
-    { name: 'YIPINTSOI CONSULTING', logo: '/images/subsidiaries/consulting.png' },
-    { name: 'YIPINTSOI ENERGY', logo: '/images/subsidiaries/energy.png' }
+    { name: 'YIP IN TSOI', logo: '/images/logos/yip-logo.png' },
+    { name: 'YBT JACKS', logo: '/images/logos/yipjacks-logo.png' },
+    { name: 'TCEL', logo: '/images/logos/tccl-logo.png' },
+    { name: 'Tangerine', logo: '/images/logos/tangerine-logo.png' },
+    { name: 'Robinhood', logo: '/images/logos/robinhood-logo.png' },
+    { name: 'SISSONS', logo: '/images/logos/sissons-logo.png' },
+    { name: 'Enrich Broker', logo: '/images/logos/eb-logo.png' },
+    { name: 'YIP IN TSOI solutions', logo: '/images/logos/yip-solutions-logo.png' },
+    { name: 'YIPINTSOI CONSULTING', logo: '/images/logos/consulting-logo.png' },
+    { name: 'YIPINTSOI ENERGY', logo: '/images/logos/energy-logo.png' }
   ];
 
   return (
@@ -181,44 +234,64 @@ export default function HomePage() {
         <div className="container mx-auto px-8 max-w-7xl">
           <ScrollReveal>
             <h2 className="text-5xl font-bold mb-12">
-              {t('bestOfProduct')}
+              Best <span className="text-red-600">of</span> Product
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {bestProducts.map((product, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <Link href={`/products/${product.slug}`}>
-                  <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer h-full flex flex-col">
-                    <div className="h-48 bg-neutral-200 relative flex-shrink-0">
-                      {/* Placeholder for product image */}
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-300 to-neutral-400">
-                        <span className="text-neutral-600 font-semibold">{product.title}</span>
+          {/* Scrollable container */}
+          <div className="relative">
+            <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'thin' }}>
+              {bestProducts.map((product, index) => (
+                <ScrollReveal key={index} delay={index * 0.1}>
+                  <Link href={`/products/${product.slug}`}>
+                    <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow cursor-pointer flex flex-col min-w-[320px] max-w-[320px] h-[480px] snap-start">
+                      {/* Image placeholder with gradient background */}
+                      <div className={`h-48 bg-gradient-to-br ${product.bgColor} relative flex-shrink-0`}>
+                        {/* Empty space for future image */}
                       </div>
-                    </div>
-                    <div className="p-6 flex flex-col flex-1">
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="text-sm text-red-600 font-medium">{product.tag}</span>
-                        <span className="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded-full">
-                          {t('tag')}
-                        </span>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-3">{product.title}</h3>
-                      <p className="text-neutral-600 text-sm mb-6 leading-relaxed line-clamp-4 flex-1">
-                        {product.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {product.partners.map((partner, i) => (
-                          <span key={i} className="text-xs font-medium text-neutral-700">
-                            {partner}
+                      
+                      <div className="p-6 flex flex-col flex-1">
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <span className="px-3 py-1 bg-neutral-100 text-neutral-700 text-xs rounded-full">
+                            {product.tag}
                           </span>
-                        ))}
+                          {product.tag2 && (
+                            <span className="px-3 py-1 bg-neutral-200 text-neutral-700 text-xs rounded-full">
+                              {product.tag2}
+                            </span>
+                          )}
+                        </div>
+                        
+                        <h3 className="text-xl font-bold mb-3">{product.title}</h3>
+                        
+                        <p className="text-neutral-600 text-sm mb-4 leading-relaxed line-clamp-3 flex-1">
+                          {product.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-2 items-center pt-3 border-t border-neutral-200 mt-auto">
+                          {product.partners.map((partner, i) => (
+                            <div key={i} className="h-4 flex items-center">
+                              <img
+                                src={partner.logo}
+                                alt={partner.name}
+                                className="h-full w-auto object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                  const parent = e.currentTarget.parentElement;
+                                  if (parent) {
+                                    parent.innerHTML = `<span class="text-xs font-medium text-neutral-700">${partner.name}</span>`;
+                                  }
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -228,7 +301,7 @@ export default function HomePage() {
         <div className="container mx-auto px-8 max-w-7xl">
           <ScrollReveal>
             <h2 className="text-5xl font-bold mb-12">
-              {t('subsidiariesTitle')}
+              Our Subsidiaries <span className="text-red-600">&</span> World Class Partnership
             </h2>
           </ScrollReveal>
 
@@ -241,7 +314,19 @@ export default function HomePage() {
               {subsidiaries.map((sub, index) => (
                 <ScrollReveal key={index} delay={index * 0.03}>
                   <div className="bg-white border border-neutral-200 rounded-lg p-4 flex items-center justify-center h-24 hover:shadow-lg transition-shadow">
-                    <span className="text-sm font-semibold text-center">{sub.name}</span>
+                    <img
+                      src={sub.logo}
+                      alt={sub.name}
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        // Fallback to text if image not found
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `<span class="text-sm font-semibold text-center">${sub.name}</span>`;
+                        }
+                      }}
+                    />
                   </div>
                 </ScrollReveal>
               ))}

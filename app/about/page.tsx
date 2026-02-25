@@ -15,16 +15,16 @@ export default function AboutPage() {
 
   // Subsidiaries data
   const subsidiaries = [
-    { name: 'YIP IN TSOI', logo: '/images/subsidiaries/yipintsoi.png' },
-    { name: 'YBT JACKS', logo: '/images/subsidiaries/ybtjacks.png' },
-    { name: 'TCEL', logo: '/images/subsidiaries/tcel.png' },
-    { name: 'Tangerine', logo: '/images/subsidiaries/tangerine.png' },
-    { name: 'Robinhood', logo: '/images/subsidiaries/robinhood.png' },
-    { name: 'SISSONS', logo: '/images/subsidiaries/sissons.png' },
-    { name: 'Enrich Broker', logo: '/images/subsidiaries/eb.png' },
-    { name: 'YIP IN TSOI solutions', logo: '/images/subsidiaries/yit-solutions.png' },
-    { name: 'YIPINTSOI CONSULTING', logo: '/images/subsidiaries/consulting.png' },
-    { name: 'YIPINTSOI ENERGY', logo: '/images/subsidiaries/energy.png' }
+    { name: 'YIP IN TSOI', logo: '/images/logos/yip-logo.png' },
+    { name: 'YBT JACKS', logo: '/images/logos/yipjacks-logo.png' },
+    { name: 'TCEL', logo: '/images/logos/tccl-logo.png' },
+    { name: 'Tangerine', logo: '/images/logos/tangerine-logo.png' },
+    { name: 'Robinhood', logo: '/images/logos/robinhood-logo.png' },
+    { name: 'SISSONS', logo: '/images/logos/sissons-logo.png' },
+    { name: 'Enrich Broker', logo: '/images/logos/eb-logo.png' },
+    { name: 'YIP IN TSOI solutions', logo: '/images/logos/yip-solutions-logo.png' },
+    { name: 'YIPINTSOI CONSULTING', logo: '/images/logos/consulting-logo.png' },
+    { name: 'YIPINTSOI ENERGY', logo: '/images/logos/energy-logo.png' }
   ];
 
   return (
@@ -131,7 +131,19 @@ export default function AboutPage() {
               {subsidiaries.map((sub, index) => (
                 <ScrollReveal key={index} delay={index * 0.03}>
                   <div className="bg-white border border-neutral-200 rounded-lg p-4 flex items-center justify-center h-24 hover:shadow-lg transition-shadow">
-                    <span className="text-sm font-semibold text-center">{sub.name}</span>
+                    <img
+                      src={sub.logo}
+                      alt={sub.name}
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        // Fallback to text if image not found
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `<span class="text-sm font-semibold text-center">${sub.name}</span>`;
+                        }
+                      }}
+                    />
                   </div>
                 </ScrollReveal>
               ))}

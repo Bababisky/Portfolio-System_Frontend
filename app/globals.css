@@ -270,6 +270,21 @@
   background-size: 1000px 100%;
 }
 
+/* Leaf sliding animation */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(-120vw) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
 /* ============================================
    LENIS SMOOTH SCROLL
    ============================================ */

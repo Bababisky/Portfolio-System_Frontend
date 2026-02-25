@@ -11,12 +11,12 @@ import { ScrollReveal } from '@/components/animation/ScrollReveal';
 export default function PartnershipPage() {
   // Partnership logos data
   const partners = [
-    'aws', 'apple', 'dell', 'googlecloud', 'iti', 'airfield',
-    'casper', 'cadex', 'checkmarx', 'cisco', 'ecodan', 'crowdstrike',
-    'f5', 'fortinet', 'freedom', 'forescout', 'frequentis', 'guardrec',
+    'aws', 'apple', 'dell', 'googlecloud', 'tti', 'airfield',
+    'casper', 'cadex', 'checkmarx', 'cisco', 'codan', 'crowdstrike',
+    'fis', 'fortinet', 'freedom', 'forescout', 'frequentis', 'guardrec',
     'hpe', 'hitachi', 'hp', 'ibm', 'hpearuba', 'huawei',
     'informatica', 'kac', 'mandiant', 'microsoft', 'netka', 'netskope',
-    'azure', 'netapp', 'nutanix', 'nvidia', 'redhat', 'openmetadata',
+    'msazure', 'netapp', 'nutanix', 'nvidia', 'redhat', 'openmetadata',
     'oracle', 'paloalto', 'sangfor', 'parkair', 'sas', 'splunk',
     'vmware', 'tableau', 'tenable', 'veritas', 'trendmicro', 'veeam',
     'wolterskluwer', 'youyang', 'zscaler'
