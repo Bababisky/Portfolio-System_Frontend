@@ -24,18 +24,23 @@ export function Header() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [vendors, setVendors] = useState<any[]>([]);
   const { language, setLanguage, t } = useLanguage();
 
-  // Fetch vendors when search opens
-  useEffect(() => {
-    if (isSearchOpen && vendors.length === 0) {
-      fetch('/api/vendors')
-        .then(res => res.json())
-        .then(data => setVendors(data))
-        .catch(err => console.error('Error loading vendors:', err));
-    }
-  }, [isSearchOpen]);
+  // All partners data for search
+  const allPartners = [
+    'AWS', 'Apple', 'Dell', 'Google Cloud', 'ITI', 'Airfield', 'Cadex', 'Casper', 'Checkmarx',
+    'Cisco', 'Codan', 'CrowdStrike', 'FIS', 'Forescout', 'Fortinet', 'Freedom', 'Frequentis',
+    'GuardREC', 'HPE', 'Hitachi', 'HP', 'HPE Aruba', 'Huawei', 'IBM', 'Informatica', 'KAC',
+    'Mandiant', 'Microsoft', 'Microsoft Azure', 'NetApp', 'Netka', 'Netskope', 'Nutanix',
+    'NVIDIA', 'OpenMetadata', 'Oracle', 'Palo Alto', 'Park Air', 'Red Hat', 'Sangfor', 'SAS',
+    'Splunk', 'Tableau', 'Tenable', 'Trend Micro', 'Veeam', 'Veritas', 'VMware',
+    'Wolters Kluwer', 'YouYang', 'Zscaler'
+  ];
+
+  // Convert partner name to slug
+  const partnerToSlug = (name: string) => {
+    return name.toLowerCase().replace(/\s+/g, '');
+  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -432,20 +437,20 @@ export function Header() {
                     ))}
 
                   {/* Vendors Results */}
-                  {vendors
-                    .filter(vendor => vendor.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                    .map((vendor, index) => (
+                  {allPartners
+                    .filter(partner => partner.toLowerCase().includes(searchQuery.toLowerCase()))
+                    .map((partner, index) => (
                       <Link
                         key={`vendor-${index}`}
-                        href={`/partnership/${vendor.name.toLowerCase().replace(/\s+/g, '')}`}
+                        href={`/partnership/${partnerToSlug(partner)}`}
                         onClick={() => {
                           setIsSearchOpen(false);
                           setSearchQuery('');
                         }}
                         className="block p-4 hover:bg-neutral-50 rounded-lg transition-colors"
                       >
-                        <div className="text-sm text-green-600 font-medium mb-1">Vendor</div>
-                        <div className="font-semibold">{vendor.name}</div>
+                        <div className="text-sm text-green-600 font-medium mb-1">Partner</div>
+                        <div className="font-semibold">{partner}</div>
                       </Link>
                     ))}
 
@@ -454,7 +459,7 @@ export function Header() {
                     .filter(slug => slug.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 &&
                    ['cloudmigration', 'cloudmanagement', 'dataanalyticssolutions']
                     .filter(slug => slug.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 &&
-                   vendors.filter(vendor => vendor.name.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                   allPartners.filter(partner => partner.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
                     <div className="text-center py-8 text-neutral-400">
                       <p>No results found for "{searchQuery}"</p>
                     </div>

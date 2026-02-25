@@ -301,7 +301,8 @@ export default function HomePage() {
         <div className="container mx-auto px-8 max-w-7xl">
           <ScrollReveal>
             <h2 className="text-5xl font-bold mb-12">
-              Our Subsidiaries <span className="text-red-600">&</span> World Class Partnership
+              Our Subsidiaries <span className="text-red-600">&</span>  <br/>
+              World Class Partnership
             </h2>
           </ScrollReveal>
 
