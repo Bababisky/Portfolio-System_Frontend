@@ -14,6 +14,7 @@ const productsData = [
     slug: 'cloudmigration',
     name: 'Cloud Migration',
     tag: 'Cloud Modernization',
+    image: '/images/products/pikachu.png',
     description: 'The Cloud has transformed into a foundational infrastructure for businesses, and the migration of traditional IT systems to the Cloud, for increased flexibility, has become one of the top strategic priorities for businesses worldwide, including Thailand. Yip In Tsoi is well-prepared and ready to provide comprehensive Cloud Migration services.',
     services: [
       {
@@ -44,10 +45,13 @@ const productsData = [
       }
     ],
     caseStudies: [
-      { name: 'Mae Fah Luang University', logo: 'mfu-logo.png' },
-      { name: 'Khon Kaen University', logo: 'kku-logo.png' },
-      { name: 'Mae Fah Luang University', logo: 'mfu-logo.png' },
-      { name: 'Khon Kaen University', logo: 'kku-logo.png' }
+      { name: 'Khon Kaen University', logo: 'kku-logo.png', link: '/case-studies/khon-kaen-university' }
+    ],
+    useCases: [
+      { 
+        name: 'Migrate Legacy On-Premise Application to AWS',
+        link: '/use-cases/migrate-legacy-on-premise-to-aws'
+      }
     ],
     certificates: [
       'AWS Certified Cloud Practitioner (10)',
@@ -64,6 +68,7 @@ const productsData = [
     slug: 'cloudmanagement',
     name: 'Cloud Management',
     tag: 'Cloud Infrastructure',
+    image: '/images/products/doraemon.png',
     description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges.',
     services: [],
     caseStudies: [],
@@ -109,8 +114,23 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
           <div className="flex items-center gap-12">
             {/* Image */}
             <div className="w-1/2">
-              <div className="bg-neutral-200 rounded-lg h-96 flex items-center justify-center">
-                <span className="text-neutral-500">Product Image</span>
+              <div className="bg-neutral-200 rounded-lg h-96 flex items-center justify-center overflow-hidden">
+                {product.image ? (
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        parent.innerHTML = '<span class="text-neutral-500">Product Image</span>';
+                      }
+                    }}
+                  />
+                ) : (
+                  <span className="text-neutral-500">Product Image</span>
+                )}
               </div>
             </div>
 
@@ -165,34 +185,54 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
 
       {/* Case Study Section */}
       {product.caseStudies.length > 0 && (
-        <section className="py-20 bg-neutral-50">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-8 max-w-7xl">
             <ScrollReveal>
-              <h2 className="text-4xl font-bold mb-12">Case Study</h2>
+              <h2 className="text-4xl font-bold mb-8">Case Study</h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="flex flex-wrap gap-4">
               {product.caseStudies.map((study, index) => (
                 <ScrollReveal key={index} delay={index * 0.05}>
-                  <div className="bg-white border border-neutral-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-4 overflow-hidden p-2">
+                  <Link href={study.link}>
+                    <div className="bg-white border border-neutral-300 rounded-lg px-6 py-3 hover:shadow-lg transition-shadow cursor-pointer flex items-center gap-3">
+                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center overflow-hidden p-1">
                         <img 
                           src={`/images/logos/${study.logo}`}
                           alt={study.name}
                           className="w-full h-full object-contain"
                           onError={(e) => {
-                            // Fallback to emoji if image not found
                             e.currentTarget.style.display = 'none';
-                            e.currentTarget.parentElement!.innerHTML = '<span class="text-3xl">🎓</span>';
+                            e.currentTarget.parentElement!.innerHTML = '<span class="text-xs">🎓</span>';
                           }}
                         />
                       </div>
-                      <h3 className="text-base font-semibold text-neutral-900">
-                        {study.name}
-                      </h3>
+                      <span className="text-sm font-semibold text-neutral-900">{study.name}</span>
                     </div>
-                  </div>
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Use Case Section */}
+      {product.useCases && product.useCases.length > 0 && (
+        <section className="py-20 bg-neutral-50">
+          <div className="container mx-auto px-8 max-w-7xl">
+            <ScrollReveal>
+              <h2 className="text-4xl font-bold mb-8">Use Case</h2>
+            </ScrollReveal>
+
+            <div className="space-y-4">
+              {product.useCases.map((useCase, index) => (
+                <ScrollReveal key={index} delay={index * 0.05}>
+                  <Link href={useCase.link}>
+                    <div className="bg-white border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                      <h3 className="text-lg font-bold">{useCase.name}</h3>
+                    </div>
+                  </Link>
                 </ScrollReveal>
               ))}
             </div>
@@ -205,16 +245,14 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <section className="py-20 bg-white">
           <div className="container mx-auto px-8 max-w-7xl">
             <ScrollReveal>
-              <h2 className="text-4xl font-bold mb-12">Certificate</h2>
+              <h2 className="text-4xl font-bold mb-8">Certificate</h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-wrap gap-4">
               {product.certificates.map((cert, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="bg-white border border-neutral-300 rounded-full px-8 py-4 hover:shadow-lg transition-shadow">
-                    <h3 className="text-lg font-bold text-neutral-900 text-center">
-                      {cert}
-                    </h3>
+                  <div className="bg-white border border-neutral-300 rounded-full px-6 py-3 hover:shadow-lg transition-shadow">
+                    <span className="text-sm font-semibold text-neutral-900">{cert}</span>
                   </div>
                 </ScrollReveal>
               ))}
@@ -228,23 +266,29 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <section className="py-20 bg-neutral-50">
           <div className="container mx-auto px-8 max-w-7xl">
             <ScrollReveal>
-              <h2 className="text-4xl font-bold mb-12">Vendors</h2>
+              <h2 className="text-4xl font-bold mb-8">Vendors</h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="flex flex-wrap gap-6 items-center">
               {product.vendors.map((vendor, index) => {
-                // Convert vendor name to slug
                 const vendorSlug = vendor.toLowerCase().replace(/\s+/g, '');
                 
                 return (
                   <ScrollReveal key={index} delay={index * 0.03}>
                     <Link href={`/partnership/${vendorSlug}`}>
-                      <div className="bg-white border border-neutral-200 rounded-2xl p-8 hover:shadow-lg transition-shadow cursor-pointer hover:border-red-300">
-                        <div className="flex items-center justify-center h-24">
-                          <span className="text-base font-semibold text-neutral-700 text-center">
-                            {vendor}
-                          </span>
-                        </div>
+                      <div className="h-12 hover:opacity-80 transition-opacity cursor-pointer">
+                        <img
+                          src={`/images/logos/${vendorSlug}-logo.png`}
+                          alt={vendor}
+                          className="h-full w-auto object-contain"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const parent = e.currentTarget.parentElement;
+                            if (parent) {
+                              parent.innerHTML = `<span class="text-sm font-semibold text-neutral-700">${vendor}</span>`;
+                            }
+                          }}
+                        />
                       </div>
                     </Link>
                   </ScrollReveal>

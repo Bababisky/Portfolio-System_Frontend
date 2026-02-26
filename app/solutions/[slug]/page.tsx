@@ -27,14 +27,16 @@ Yip In Tsoi is a recognized expert in delivering comprehensive IT solutions tail
         name: 'Cloud Migration',
         tag: 'Cloud Modernization',
         description: 'The Cloud has transformed into a foundational infrastructure for businesses, and the migration of traditional IT systems to the Cloud, for increased flexibility, has become one of the top strategic priorities for businesses worldwide, including Thailand.',
-        partners: ['AWS', 'Google Cloud', 'ORACLE', 'NetApp']
+        partners: ['AWS', 'Google Cloud', 'ORACLE', 'NetApp'],
+        image: '/images/products/pikachu.png'
       },
       {
         slug: 'cloudmanagement',
         name: 'Cloud Management',
         tag: 'Cloud Infrastructure',
         description: 'While the concept of Cloud computing may present the idea of an on-demand convenience for eliminating the need for manual administration of back-end IT systems, the actual use of Cloud services comes with many challenges.',
-        partners: ['AWS', 'Google Cloud', 'Microsoft']
+        partners: ['AWS', 'Google Cloud', 'Microsoft'],
+        image: '/images/products/doraemon.png'
       }
     ]
   },
@@ -185,15 +187,31 @@ export default function SolutionDetailPage({ params }: { params: { slug: string 
             <div className="space-y-8">
               {solution.offerings.map((offering, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                  <div className="bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer" onClick={() => setExpandedOffering(expandedOffering === index ? null : index)}>
                     {/* Card Header - Always visible */}
                     <div className="p-8">
                       <div className="flex items-start gap-8">
                         {/* Image placeholder */}
-                        <div className="w-64 h-48 bg-neutral-200 rounded-lg flex-shrink-0">
-                          <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                            <span className="text-sm">{offering.name}</span>
-                          </div>
+                        <div className="w-64 h-48 bg-neutral-200 rounded-lg flex-shrink-0 overflow-hidden">
+                          {offering.image ? (
+                            <img 
+                              src={offering.image} 
+                              alt={offering.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                // Fallback to placeholder if image not found
+                                e.currentTarget.style.display = 'none';
+                                const parent = e.currentTarget.parentElement;
+                                if (parent) {
+                                  parent.innerHTML = `<div class="w-full h-full flex items-center justify-center text-neutral-400"><span class="text-sm">${offering.name}</span></div>`;
+                                }
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-neutral-400">
+                              <span className="text-sm">{offering.name}</span>
+                            </div>
+                          )}
                         </div>
 
                         {/* Content */}
@@ -202,21 +220,18 @@ export default function SolutionDetailPage({ params }: { params: { slug: string 
                             <span className="px-4 py-1 bg-red-100 text-red-600 text-sm rounded-full font-medium">
                               {offering.tag}
                             </span>
-                            <div className="ml-auto">
-                              <button 
-                                onClick={() => setExpandedOffering(expandedOffering === index ? null : index)}
-                                className="px-4 py-1 bg-neutral-200 text-neutral-700 text-sm rounded flex items-center gap-2 hover:bg-neutral-300 transition-colors"
-                              >
+                            <div className="ml-auto flex items-center gap-3">
+                              <span className="px-4 py-1 bg-neutral-200 text-neutral-700 text-sm rounded">
                                 Cloud
-                                <svg 
-                                  className={`w-4 h-4 transition-transform ${expandedOffering === index ? 'rotate-180' : ''}`}
-                                  fill="none" 
-                                  viewBox="0 0 24 24" 
-                                  stroke="currentColor"
-                                >
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                              </button>
+                              </span>
+                              <svg 
+                                className={`w-5 h-5 text-neutral-500 transition-transform ${expandedOffering === index ? 'rotate-180' : ''}`}
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
                             </div>
                           </div>
                           <h3 className="text-2xl font-bold mb-4">{offering.name}</h3>
@@ -241,6 +256,7 @@ export default function SolutionDetailPage({ params }: { params: { slug: string 
                           <Link 
                             href={`/products/${offering.slug}`}
                             className="inline-block w-full py-3 bg-neutral-300 text-neutral-800 text-center font-medium rounded hover:bg-neutral-400 transition-colors"
+                            onClick={(e) => e.stopPropagation()}
                           >
                             Read more
                           </Link>
