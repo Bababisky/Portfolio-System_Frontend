@@ -16,7 +16,7 @@ export function WorldClassPartnership() {
   const allPartners = [
     'AWS', 'Red Hat', 'Oracle', 'VMware', 'Apple', 'Dell',
     'Google Cloud', 'TTI', 'Airfield', 'Casper', 'Cadex', 'Checkmarx',
-    'Cisco', 'Ecodan', 'CrowdStrike', 'Fis', 'Fortinet', 'Freedom',
+    'Cisco', 'CrowdStrike', 'Fis', 'Fortinet', 'Freedom',
     'Forescout', 'Frequentis', 'GuardREC', 'HPE', 'Hitachi', 'HP',
     'IBM', 'HPE Aruba', 'Huawei', 'Informatica', 'KAC', 'Mandiant',
     'Microsoft', 'Netka', 'Netskope', 'MSAzure', 'NetApp', 'Nutanix',
